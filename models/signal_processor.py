@@ -36,26 +36,13 @@ class SignalProcessor:
         )
 
     def apply_bandpass(self, data):
-        """
-        Apply a 4th order Butterworth bandpass filter (20–450 Hz).
+    # filtfilt needs more samples than its padlen, computed from
+    # the actual filter coefficients, not a hardcoded guess.
+        padlen = 3 * max(len(self.a), len(self.b))
 
-        Uses filtfilt for zero phase distortion — the signal is filtered
-        forward and backward, so there is no time delay in the output.
-
-        Parameters
-        ----------
-        data : np.ndarray
-            1D signal array (single channel).
-
-        Returns
-        -------
-        np.ndarray
-            Filtered signal, same length as input.
-        """
-        if data.shape[0] < 13:
-            # filtfilt needs at least 3 * max(len(a), len(b)) samples
-            # with a 4th order filter that's 3 * 5 = 15, but 13 is the
-            # padlen default. Return zeros if not enough data yet.
+        if data.shape[0] <= padlen:
+            # Not enough data yet (e.g. right after connecting) —
+            # return unfiltered zeros rather than crashing.
             return np.zeros_like(data)
 
         return scipy_signal.filtfilt(self.b, self.a, data)

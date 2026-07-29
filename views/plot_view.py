@@ -69,19 +69,6 @@ class VisPyPlotWidget(QWidget):
             line.visible = False
             self.channel_lines.append(line)
 
-        # Channel labels for all-channels mode
-        self.channel_labels = []
-        for i in range(self.NUM_CHANNELS):
-            label = scene.Text(
-                text=f"Ch {i + 1}",
-                color="black",
-                font_size=8,
-                anchor_x="right",
-                anchor_y="center",
-                parent=self.view.scene,
-            )
-            label.visible = False
-            self.channel_labels.append(label)
 
         # X-axis line at the bottom
         self.x_axis_line = scene.Line(
@@ -169,9 +156,7 @@ class VisPyPlotWidget(QWidget):
         self.signal_line.visible = not show_all
         for line in self.channel_lines:
             line.visible = show_all
-        for label in self.channel_labels:
-            label.visible = show_all
-
+    
     def update_plot(self, x, y):
         """
         Update the single-channel VisPy plot with new data.
@@ -252,8 +237,6 @@ class VisPyPlotWidget(QWidget):
             pos = np.column_stack((display_x, y_display))
             self.channel_lines[ch].set_data(pos=pos)
 
-            # Position the channel label at the left edge
-            self.channel_labels[ch].pos = (-0.3, offset)
 
         self._update_camera()
 
