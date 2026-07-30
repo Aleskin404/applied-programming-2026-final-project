@@ -1,4 +1,5 @@
 # TCP EMG Viewer — Final Project
+**Group Number:** 3
 
 **Applied Programming 2026** — N² Lab, FAU Erlangen-Nürnberg
 
@@ -10,9 +11,18 @@ A PySide6 desktop application for live visualization and offline inspection of s
 
 | Name | Responsibility |
 |------|----------------|
-| TODO | TCP client / backend |
-| TODO | Visualization / frontend |
-| TODO | Documentation / integration |
+| Ebran Amanda Dewmin Ranasinghe | **Backend, TCP Communication & Signal Processing**<br>- Implemented the TCP client for connecting to the provided server.<br>- Developed connection and disconnection functionality.<br>- Implemented packet reception and reconstruction according to the required data format (32 channels × 18 samples, float64).<br>- Developed the byte buffer and rolling buffer for continuous data streaming.<br>- Implemented the Original, Filtered, and RMS signal processing methods.<br>- Added error handling for invalid ports, connection failures, and lost TCP connections.<br>- Assisted with backend debugging and integration. |
+| Thanina Medjebar | **GUI, Live Visualization & MVVM**<br>- Designed and implemented the PySide6 graphical user interface.<br>- Implemented the MVVM architecture by connecting Views, ViewModels, and Models.<br>- Developed the live VisPy visualization.<br>- Implemented the rolling time window, channel selection, axis labels, and adjustable scaling.<br>- Implemented the **Plot All Channels** feature with vertical channel offsets.<br>- Added connection status indicators, GUI controls, and connected user actions to the ViewModel. |
+| Sadoon Saif | **Offline Visualization, Documentation & Integration**<br>- Implemented offline signal inspection using Matplotlib.<br>- Added channel selection and Original / Filtered / RMS signal modes for offline visualization.<br>- Integrated offline plotting with recorded data after streaming stopped.<br>- Prepared the project documentation including README.md and requirements.txt.<br>- Organized the MVVM project structure and added code comments/docstrings.<br>- Performed final integration testing, debugging, and GitHub repository preparation. |
+
+### Shared Contributions
+
+All team members collaborated on:
+- Designing the overall application architecture.
+- Testing the application with the provided TCP server.
+- Debugging and improving application stability.
+- Reviewing each other's code.
+- Verifying that all project requirements were met before submission.
 
 ---
 
@@ -20,7 +30,7 @@ A PySide6 desktop application for live visualization and offline inspection of s
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/Aleskin404/applied-programming-2026-final-project.git
 cd final_project
 
 # Install dependencies
